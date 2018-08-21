@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ContactsController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ContactsController@showAll');
+Route::post('/', 'ContactsController@createContact');
+
+Route::get('/edit', 'ContactsController@showEditInfo');
+Route::post('/edit', 'ContactsController@editContact');
