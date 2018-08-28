@@ -13,8 +13,8 @@ use App\Http\Controllers\ContactsController;
 |
 */
 
-Route::get('/', 'ContactsController@showAll');
-Route::post('/', 'ContactsController@createContact');
+Route::get('/', 'ContactsController@showAll')->name('mainPage');
+Route::post('/', 'ContactsController@createContact')->name('addContact');
 
-Route::get('/edit', 'ContactsController@showEditInfo');
-Route::post('/edit', 'ContactsController@editContact');
+Route::get('/edit', 'ContactsController@showEditInfo')->name('editContact');
+Route::post('/edit', 'ContactsController@editContact')->name('updateContact');

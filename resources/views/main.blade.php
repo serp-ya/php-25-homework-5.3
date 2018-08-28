@@ -8,8 +8,18 @@
           Контакты
       </div>
 
-      <form method="POST">
+      <form action="{{ route('addContact') }}" method="POST">
         <h2>Добавить новый</h2>
+
+        @if ($errors->any())
+          <div style="width: 50%; margin: 0 auto;">
+            <h3>Ознакомьтесь с ошибками!</h3>
+              @foreach ($errors->all() as $error)
+                <p class="error">{{ $error }}</p>
+              @endforeach
+          </div>
+        @endif
+
         <input type="text" name="name" placeholder="Имя" require>
         <input type="text" name="phone" placeholder="Телефон" require>
         <input type="submit" value="Отправить">
@@ -21,7 +31,7 @@
           <li style="display: flex; justify-content: space-between">
             {{ $contact->name }} - {{ $contact->phone }}
 
-            <form action="/edit" method="GET">
+            <form action="{{ route('editContact') }}">
               <input 
                 type="hidden" 
                 name="id" 
@@ -34,4 +44,10 @@
         @endforeach
       </ol>
   </div>
+
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
 @endsection

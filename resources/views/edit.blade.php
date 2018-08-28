@@ -8,7 +8,16 @@
         Редактировать контакт id: {{ $id }}
     </div>
 
-    <form class="edit-form" action="/edit" method="POST">  
+    @if ($errors->any())
+      <div style="width: 50%; margin: 0 auto;">
+        <h3>Ознакомьтесь с ошибками!</h3>
+          @foreach ($errors->all() as $error)
+            <p class="error">{{ $error }}</p>
+          @endforeach
+      </div>
+    @endif
+
+    <form class="edit-form" action="{{ route('updateContact') }}" method="POST">  
       <div>
         Имя: 
         <input type="text" name="name" value="{{ $contact->name }}">
@@ -31,6 +40,9 @@
       justify-content: space-between;
       margin: 0 auto;
       width: 70%;
+    }
+    .error {
+      color: red;
     }
   </style>
 @endsection
